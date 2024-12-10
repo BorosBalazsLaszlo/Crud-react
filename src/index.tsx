@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PostPage from './pages/PostPage';
 import DeletePage from './pages/DeletePage';
+import Profile from './pages/Profile'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,6 +18,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/post" element={<PostPage />} />
         <Route path="/delete" element={<DeletePage />} />
+        <Route path="/users/:id" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

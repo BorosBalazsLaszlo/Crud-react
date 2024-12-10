@@ -22,12 +22,19 @@ function App() {
     apiClient
       .delete(`/api/users/${id}`)
       .then((response) => {
-        if (response.status === 200) {
-          setData(data.filter((user) => user.id !== id));
+        switch (response.status) {
+          case 200:
+            console.log("User updated successfully");
+            break;
+          case 400:
+            console.error("Bad request");
+            break;
+          default:
+            console.error("An error occurred");
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
   };
 
@@ -35,7 +42,7 @@ function App() {
     const user = {
       userClass: newClass,
     };
-
+  
     apiClient
       .put(`/api/users/${id}`, user)
       .then((response) => {
@@ -54,6 +61,7 @@ function App() {
         console.error(error);
       });
   };
+  
 
   return (
     <div className="App">
