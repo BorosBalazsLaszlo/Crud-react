@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import "./App.css";
 import apiClient from "./api/api";
 import { Users } from "./types/Users";
+import PostPage from "./pages/PostPage";
 
 function App() {
   const [data, setData] = useState<Users[]>([]);
-  const [putClass, setPutClass] = useState<string>("");
+  const [putClass, setPutClass] = useState("");
 
   useEffect(() => {
     apiClient
@@ -39,12 +40,15 @@ function App() {
   };
 
   const putUser = (id: number, newClass: string) => {
-    const user = {
+    const user = data.find((u) => u.id === id);
+
+    const updatedUser = {
+      ...user,
       userClass: newClass,
     };
-  
+
     apiClient
-      .put(`/api/users/${id}`, user)
+      .put(`/api/users/${id}`, updatedUser)
       .then((response) => {
         switch (response.status) {
           case 200:
@@ -61,7 +65,6 @@ function App() {
         console.error(error);
       });
   };
-  
 
   return (
     <div className="App">
@@ -99,6 +102,7 @@ function App() {
             ))}
           </tbody>
         </table>
+        <PostPage></PostPage>
       </header>
     </div>
   );
