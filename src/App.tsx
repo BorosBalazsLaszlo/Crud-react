@@ -37,6 +37,8 @@ function App() {
       .catch((error) => {
         console.error(error);
       });
+
+      window.location.reload();
   };
 
   const putUser = (id: number, newClass: string) => {
@@ -64,6 +66,8 @@ function App() {
       .catch((error) => {
         console.error(error);
       });
+
+      window.location.reload();
   };
 
   return (
